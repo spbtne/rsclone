@@ -19,7 +19,9 @@
     }
   }
 
-  &__registration-link {
+  &__registration-link,
+  &__login-link,
+  &__success--block {
     font-size: 16px;
     line-height: 19px;
     letter-spacing: 0.1px;
@@ -29,8 +31,34 @@
 
     margin-top: 30px;
   }
+  &__success--block {
+    margin-top: 0;
+    svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 15px;
+    }
+  }
+  &__success--block {
+    height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    line-height: 26px;
+  }
   .block {
     width: 430px;
+    min-height: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    form {
+      width: 100%;
+    }
   }
 
   .button {
@@ -39,5 +67,12 @@
     font-size: 14px;
     letter-spacing: 0.1px;
     width: 100%;
+  }
+  #username,
+  #password,
+  #password-repeat,
+  #userlogin,
+  #email {
+    margin-left: 5px;
   }
 }
