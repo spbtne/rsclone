@@ -14,7 +14,7 @@ import {
 import { Button, Block } from "../../../components/indexComponents";
 
 function RegistrationForm() {
-  const success = false;
+  const success = true;
   return (
     <div>
       <div className="auth__top">

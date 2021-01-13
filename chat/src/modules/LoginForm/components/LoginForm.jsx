@@ -29,7 +29,11 @@ function LoginForm() {
               },
             ]}
           >
-            <Input size="large" placeholder="Логин" prefix={<UserOutlined />} />
+            <Input
+              size="large"
+              placeholder="Логин"
+              prefix={<UserOutlined />}
+            />
           </Form.Item>
 
           <Form.Item
