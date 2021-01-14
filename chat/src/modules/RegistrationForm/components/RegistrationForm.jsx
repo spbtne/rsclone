@@ -13,8 +13,17 @@ import {
 
 import { Button, Block } from "../../../components/indexComponents";
 
-function RegistrationForm() {
-  const success = true;
+const success = true;
+
+const RegistrationForm = (props) => {
+  const {
+    values,
+    touched,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = props;
   return (
     <div>
       <div className="auth__top">
@@ -23,20 +32,29 @@ function RegistrationForm() {
       </div>
       <Block>
         {success ? (
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Item
-              name="email"
+              validateStatus={
+                !touched.email ? "" : errors.email ? "error" : "success"
+              }
+              help={!touched.email ? "" : errors.email}
               rules={[
                 {
                   required: true,
                   message: "Введите Ваш e-mail",
                 },
               ]}
+              hasFeedback
             >
               <Input
+                id="email"
+                name="email"
                 size="large"
                 placeholder="E-mail"
                 prefix={<MailOutlined />}
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
             </Form.Item>
             <Form.Item
@@ -56,7 +74,10 @@ function RegistrationForm() {
             </Form.Item>
 
             <Form.Item
-              name="password"
+              validateStatus={
+                !touched.password ? "" : errors.password ? "error" : "success"
+              }
+              help={!touched.password ? "" : errors.password}
               rules={[
                 {
                   required: true,
@@ -65,6 +86,12 @@ function RegistrationForm() {
               ]}
             >
               <Input.Password
+                id="password"
+                name="password"
+                type="password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 size="large"
                 placeholder="Пароль"
                 prefix={<LockOutlined />}
@@ -84,6 +111,7 @@ function RegistrationForm() {
             >
               <Input.Password
                 size="large"
+                type="password"
                 placeholder="Повторите пароль"
                 prefix={<LockOutlined />}
                 iconRender={(visible) =>
@@ -92,7 +120,7 @@ function RegistrationForm() {
               />
             </Form.Item>
             <Form.Item>
-              <Button type="primary" size="large">
+              <Button type="primary" size="large" onClick={handleSubmit}>
                 Зарегистироваться
               </Button>
             </Form.Item>
@@ -113,6 +141,6 @@ function RegistrationForm() {
       </Block>
     </div>
   );
-}
+};
 
 export default RegistrationForm;
