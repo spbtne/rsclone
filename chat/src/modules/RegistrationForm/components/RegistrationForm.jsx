@@ -37,7 +37,6 @@ const RegistrationForm = (props) => {
               validateStatus={
                 !touched.email ? "" : errors.email ? "error" : "success"
               }
-              help={!touched.email ? "" : errors.email}
               rules={[
                 {
                   required: true,
@@ -56,6 +55,11 @@ const RegistrationForm = (props) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              {errors.email && touched.email && (
+                <span className="error error-email" id="feedback">
+                  {errors.email}
+                </span>
+              )}
             </Form.Item>
             <Form.Item
               name="userlogin"
@@ -77,7 +81,6 @@ const RegistrationForm = (props) => {
               validateStatus={
                 !touched.password ? "" : errors.password ? "error" : "success"
               }
-              help={!touched.password ? "" : errors.password}
               rules={[
                 {
                   required: true,
@@ -99,6 +102,11 @@ const RegistrationForm = (props) => {
                   visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
                 }
               />
+              {errors.password && touched.password && (
+                <span className="error error-password" id="feedback">
+                  {errors.password}
+                </span>
+              )}
             </Form.Item>
             <Form.Item
               name="password-repeat"
