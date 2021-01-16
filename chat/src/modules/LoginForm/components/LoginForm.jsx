@@ -1,68 +1,86 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
 import { Form, Input } from "antd";
+import { Link } from "react-router-dom";
 import {
-  UserOutlined,
-  EyeTwoTone,
-  EyeInvisibleOutlined,
-  LockOutlined,
+  MailOutlined,
+  LockOutlined
 } from "@ant-design/icons";
 
 import { Button, Block } from "../../../components/indexComponents";
 
-function LoginForm() {
+const validate = (key, touched, errors) => {
+if (touched[key]) {
+  if (errors[key]) {
+    return 'error';
+  } else {
+    return "success";
+  }
+} else {
+  return "";
+}
+};
+
+const LoginForm = props => {
+  const {
+    values,
+    touched,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    isValid,
+    isSubmitting
+  } = props;
   return (
     <div>
-      <div className="auth__top">
-        <h2>Войти в аккаунт</h2>
-        <p>Пожалуйста, войдите в свой аккаунт</p>
-      </div>
+    <div className="auth__top">
+      <h2>Войти в аккаунт</h2>
+      <p>Пожалуйста, войдите в свой аккаунт</p>
+    </div>
       <Block>
-        <Form>
-          <Form.Item
-            name="userlogin"
-            rules={[
-              {
-                required: true,
-                message: "Введите Ваш логин",
-              },
-            ]}
-          >
-            <Input
-              size="large"
-              placeholder="Логин"
-              prefix={<UserOutlined />}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: "Введите Ваш пароль",
-              },
-            ]}
-          >
-            <Input.Password
-              size="large"
-              placeholder="Пароль"
-              prefix={<LockOutlined />}
-              iconRender={(visible) =>
-                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-              }
-            />
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" size="large">
-              Войти
-            </Button>
-          </Form.Item>
-          <Link to="/registration" className="auth__registration-link">
-            Зарегистироваться
-          </Link>
-        </Form>
+      <Form onSubmit={handleSubmit} className="login-form">
+            <Form.Item
+              validateStatus={validate("email", touched, errors)}
+              help={!touched.email ? "" : errors.email}
+              hasFeedback
+            >
+              <Input
+                id="email"
+                prefix={<MailOutlined />}
+                size="large"
+                placeholder="E-mail"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                />
+                </Form.Item>
+                <Form.Item
+              validateStatus={validate("password", touched, errors)}
+              help={!touched.password ? "" : errors.password}
+              hasFeedback
+            >
+              <Input
+                id="password"
+                prefix={<LockOutlined/>}
+                size="large"
+                type="password"
+                placeholder="Пароль"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                />
+            </Form.Item>
+            <Form.Item>
+              {isSubmitting && !isValid && <span>Ошибка!</span>}
+              <Button  onClick={handleSubmit} type="primary" size="large">
+                Войти в аккаунт
+                
+              </Button>
+            </Form.Item>
+            <Link className="auth__login-link" to="/register">
+              Зарегистрироваться
+            </Link>
+          </Form>
       </Block>
     </div>
   );

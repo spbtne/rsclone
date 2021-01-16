@@ -1,27 +1,15 @@
 import { withFormik } from "formik";
 import RegistrationForm from "../components/RegistrationForm";
+import validateForm from "../../../utils/validate";
 
 export default withFormik({
   //   mapPropsToValues: () => ({ email: "test@asd.com" }), set default value
-  validate: (values) => {
+  validate: values => {
     let errors = {};
+    const validate = validateForm({ isAuth: false });
 
-    if (!values.email) {
-      errors.email = "Обязательное поле";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-    ) {
-      errors.email = "Введите корректный e-mail";
-    }
-    if (!values.password) {
-      errors.password = "Введите пароль";
-    } else if (
-      !/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/.test(
-        values.password
-      )
-    ) {
-      errors.password = "Слишком легкий пароль";
-    }
+    Object.keys(values).forEach(key => validate[key] && validate[key](errors, values[key]));
+
     return errors;
   },
 
@@ -32,5 +20,5 @@ export default withFormik({
     }, 1000);
   },
 
-  displayName: "RegistrationForm",
+  displayName: 'RegistrationForm',
 })(RegistrationForm);
