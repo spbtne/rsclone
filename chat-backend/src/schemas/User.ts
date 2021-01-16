@@ -1,13 +1,23 @@
-import mongoose, { Schema } from "mongoose";
-import { isEmail } from 'validator';
+import mongoose, { Schema, Document } from "mongoose";
+import validator  from 'validator';
 
+export interface IUser extends Document {
+  email: string;
+  fullname: string;
+  password: string;
+  confirmed: string;
+  avatar: string;
+  confirm_hash: string;
+  last_seen: Date;
+}
 
 const UserSchema = new Schema(
   {
     email: {
       type:String,
-      required: 'Email required',
-      validate: [isEmail, 'Invalid e-mail']
+      require: 'Email required',
+      validate: [validator.isEmail, 'Invalid e-mail'],
+      unique: true,
     },
     avatar: String,
     fullname: {
@@ -30,6 +40,6 @@ const UserSchema = new Schema(
   }
 );
 
-const User = mongoose.model('User', UserSchema);
+const UserModel = mongoose.model<IUser>('User', UserSchema);
 
-export default User;
+export default UserModel;

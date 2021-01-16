@@ -1,21 +1,27 @@
-import mongoose from 'mongoose'
-import express from 'express'
+import mongoose from "mongoose";
+import express from "express";
+import bodyParser from "body-parser";
 
-import User from './schemas/User'
+import { UserModel } from "./schemas/indexSchemas";
+import { UserController } from "./controllers/indexControllers";
 
-const app = express()
-const port = 3000
+const app = express();
+const port = 3000;
 
-mongoose.connect('mongodb://localhost:27017/chat', {useNewUrlParser: true, useUnifiedTopology: true});
+app.use(bodyParser.json());
 
+const User = new UserController();
 
-app.get('/create', (req: any, res: any) => {
- 
-  const user = new User ({ email: 'test1@mail.ru', fullname: 'Test User' });
-  user.save().then((obj:any) =>  {res.json(obj)});
+mongoose.connect("mongodb://localhost:27017/chat", {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+});
 
-})
+app.get("/user/:id", User.show);
+app.post("/user/registration", User.create);
+app.delete("/user/:id", User.delete);
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+app.listen(3000, function () {
+  console.log("Example app listening on port 3000! http://localhost:3000/");
+});
