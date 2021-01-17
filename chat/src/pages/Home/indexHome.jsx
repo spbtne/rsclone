@@ -7,6 +7,7 @@ import "./Home.scss";
 function Home() {
   return (
     <section className="home">
+      
       <Message
         avatar="https://sun9-45.userapi.com/impg/604pXax9N6--gZ1nVeUdAF7lWyswBCkIzwXzPQ/P7K86r7Anec.jpg?size=50x0&quality=96&crop=0,0,1790,1790&sign=64dd05d8cf09f8d434cf3e72fe635fd1&ava=1"
         text="Салам, Брут! Чё, как, уничтожил флот галлов? 🖐🏻"
@@ -48,6 +49,19 @@ function Home() {
           },
         ]}
       ></Message>
+      <Message
+        avatar="https://sun9-45.userapi.com/impg/604pXax9N6--gZ1nVeUdAF7lWyswBCkIzwXzPQ/P7K86r7Anec.jpg?size=50x0&quality=96&crop=0,0,1790,1790&sign=64dd05d8cf09f8d434cf3e72fe635fd1&ava=1"
+        attachments={[
+          {
+            fileName: "image.jpg",
+            url: "https://source.unsplash.com/100x100/?random1&nature,water",
+          }
+        ]}
+      />
+      <Message
+        avatar="https://sun9-45.userapi.com/impg/604pXax9N6--gZ1nVeUdAF7lWyswBCkIzwXzPQ/P7K86r7Anec.jpg?size=50x0&quality=96&crop=0,0,1790,1790&sign=64dd05d8cf09f8d434cf3e72fe635fd1&ava=1"
+        isTyping
+      />
     </section>
   );
 }
