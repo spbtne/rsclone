@@ -1,14 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
-import ruLocale from "date-fns/locale/ru";
+// import formatDistanceToNow from "date-fns/formatDistanceToNow";
+// import ruLocale from "date-fns/locale/ru";
 import classNames from "classnames";
 import readedSvg from "../../assets/img/readed.svg";
 import noReadedSvg from "../../assets/img/no-read.svg";
 import readedSvgWhite from "../../assets/img/readedWhite.svg";
 import noReadedSvgWhite from "../../assets/img/no-readWhite.svg";
 
+import Time from '../Time/indexTime'
+
 import "./Message.scss";
+import IconReaded from "../IconReaded/indexIconReaded";
 
 function Message({ avatar, user, text, date, isMe, isReaded, attachments, isTyping }) {
   return (
@@ -20,6 +23,7 @@ function Message({ avatar, user, text, date, isMe, isReaded, attachments, isTypi
         <img src={avatar} alt={`${user.fullname} avatar`} />
       </div>
       <div className="message__container">
+        <IconReaded isMe={isMe} isReaded={isReaded}/>
 {(text || isTyping) && <div className="message__bubble">
           {text && <p className="message__text">{text}</p>}
             {isTyping && <div className="message__typing">
@@ -46,7 +50,7 @@ function Message({ avatar, user, text, date, isMe, isReaded, attachments, isTypi
         </div>
         {date && (
         <span className="message__date">
-          {formatDistanceToNow(date, { addSuffix: true, locale: ruLocale })}
+          <Time date={date} />
         </span>
   )}
       </div>
@@ -64,6 +68,8 @@ Message.propTypes = {
   date: PropTypes.object,
   user: PropTypes.object,
   attachments: PropTypes.array,
+  isMe: PropTypes.bool,
+  isReaded: PropTypes.bool,
   isTyping: PropTypes.bool
 };
 
