@@ -1,5 +1,5 @@
 import express from "express";
-import { UserModel } from "../schemas/indexSchemas";
+import { UserModel } from "../models/indexModels";
 
 class UserController {
   show(req: express.Request, res: express.Response) {
