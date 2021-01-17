@@ -7,18 +7,7 @@ import {
 } from "@ant-design/icons";
 
 import { Button, Block } from "../../../components/indexComponents";
-
-const validate = (key, touched, errors) => {
-if (touched[key]) {
-  if (errors[key]) {
-    return 'error';
-  } else {
-    return "success";
-  }
-} else {
-  return "";
-}
-};
+import { validateField } from '../../../utils/helpers'
 
 const LoginForm = props => {
   const {
@@ -40,7 +29,7 @@ const LoginForm = props => {
       <Block>
       <Form onSubmit={handleSubmit} className="login-form">
             <Form.Item
-              validateStatus={validate("email", touched, errors)}
+              validateStatus={validateField("email", touched, errors)}
               help={!touched.email ? "" : errors.email}
               hasFeedback
             >
@@ -55,7 +44,7 @@ const LoginForm = props => {
                 />
                 </Form.Item>
                 <Form.Item
-              validateStatus={validate("password", touched, errors)}
+              validateStatus={validateField("password", touched, errors)}
               help={!touched.password ? "" : errors.password}
               hasFeedback
             >
