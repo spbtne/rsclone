@@ -55,11 +55,11 @@ const RegistrationForm = (props) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.email && touched.email && (
+              {/* {errors.email && touched.email && (
                 <span className="error error-email" id="feedback">
                   {errors.email}
                 </span>
-              )}
+              )} */}
             </Form.Item>
             <Form.Item
               name="userlogin"
@@ -101,11 +101,11 @@ const RegistrationForm = (props) => {
                   visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
                 }
               />
-              {errors.password && touched.password && (
+              {/* {errors.password && touched.password && (
                 <span className="error error-password" id="feedback">
                   {errors.password}
                 </span>
-              )}
+              )} */}
             </Form.Item>
             <Form.Item validateStatus={validateField("password", touched, errors)}
               name="password-repeat"

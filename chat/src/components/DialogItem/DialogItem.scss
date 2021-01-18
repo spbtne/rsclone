@@ -79,9 +79,10 @@
           line-height: 17px;
         }
         .message__icon-readed {
-          bottom: 0;
+          position: absolute;
+          bottom: 17px;
           left: auto;
-          right: 0;
+          right: 6px;
         }
       }
     }
