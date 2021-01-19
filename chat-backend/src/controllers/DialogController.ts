@@ -5,7 +5,7 @@ import { DialogModel, MessageModel } from "../models/indexModels";
 
 class DialogController {
   index(req: express.Request, res: express.Response) {
-    const authorId = "60041df34beb802a503876bf";
+    const authorId = "6005c8bad7a0ab3e34371084";
 
     DialogModel.find()
       .or([{ author: authorId }])
