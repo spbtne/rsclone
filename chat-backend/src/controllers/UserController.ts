@@ -1,6 +1,7 @@
 import express from "express";
+import { validationResult } from "express-validator";
 import { UserModel } from "../models/indexModels";
-import  createJWTToken  from "../utils/createJWTToken";
+import createJWTToken from "../utils/createJWTToken";
 
 class UserController {
   show(req: express.Request, res: express.Response) {
@@ -42,9 +43,14 @@ class UserController {
   }
   login(req: express.Request, res: express.Response) {
     const postData = {
-      email: req.body.login,
+      email: req.body.email,
       password: req.body.password,
     };
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
 
     UserModel.findOne({ email: postData.email }, (err: any, user: any) => {
       if (err) {
