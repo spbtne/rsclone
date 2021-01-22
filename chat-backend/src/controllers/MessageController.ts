@@ -3,7 +3,9 @@ import { MessageModel } from "../models/indexModels";
 
 class MessageController {
     index(req: express.Request, res: express.Response) {
-        const dialogId = req.query.dialog;
+
+      console.log(req.body.dialog);
+        const dialogId = req.body.dialog;
     
         MessageModel.find()
           .or([{ dialog: dialogId }])
@@ -19,11 +21,11 @@ class MessageController {
       }
       create(req: express.Request, res: express.Response) {
 
-        const userId = '60041df34beb802a503876bf';
+        const userId = req.body.partner;
         const postData = {
           text: req.body.text,
-          user: userId,
-          dialog : req.body.dialog_id,
+          partner: userId,
+          dialog : req.body.dialog,
         };
         const message = new MessageModel(postData);
     

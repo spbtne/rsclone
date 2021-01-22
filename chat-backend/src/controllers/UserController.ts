@@ -1,7 +1,9 @@
 import express from "express";
-import { validationResult } from "express-validator";
+import { validationResult, Result, ValidationError } from "express-validator";
 import { UserModel } from "../models/indexModels";
 import createJWTToken from "../utils/createJWTToken";
+import bcrypt from "bcryptjs";
+
 
 class UserController {
   show(req: express.Request, res: express.Response) {
@@ -56,7 +58,7 @@ class UserController {
       if (err) {
         return res.status(404).json({ message: "Not found" });
       }
-      if (user.password === postData.password) {
+      if (bcrypt.compareSync(postData.password, user.password)) {
         const token = createJWTToken(user);
         res.json({
           status: "success",
