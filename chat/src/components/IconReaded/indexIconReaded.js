@@ -7,21 +7,44 @@ import noReadedSvg from "../../assets/img/no-read.svg";
 
 //import { Button as BaseButton } from "antd";
 
-const IconReaded = ({ isMe, isReaded }) => 
-isMe &&
-(isReaded ? (
-  <img className="message__icon-readed" src={readedSvg} alt="Readed icon" />
-  ) : (
-    <img 
-    className="message__icon-readed message__icon-readed--no"
-    src={noReadedSvg}
-    alt="No readed icon"
-    />
-  ));
+const IconReaded = ({ isMe, isReaded }) => {
+  if (isMe) {
+    if (isReaded) {
+      return (
+        <img
+          className="message__icon-readed"
+          src={readedSvg}
+          alt="Readed icon"
+        />
+      );
+    }
+    else {
+      return (
+        <img
+            className="message__icon-readed message__icon-readed--no"
+            src={noReadedSvg}
+            alt="No readed icon"
+          />
+      );
+    }
+  } else {
+    return null;
+  }
+};
 
-  IconReaded.propTypes = {
-    isMe: PropTypes.bool,
-    isReaded: PropTypes.bool
-  };
+// isMe && (isReaded ? (
+//   <img className="message__icon-readed" src={readedSvg} alt="Readed icon" />
+// ) : (
+//   <img
+//     className="message__icon-readed message__icon-readed--no"
+//     src={noReadedSvg}
+//     alt="No readed icon"
+//   />
+// ));
+
+IconReaded.propTypes = {
+  isMe: PropTypes.bool,
+  isReaded: PropTypes.bool,
+};
 
 export default IconReaded;

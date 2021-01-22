@@ -70,7 +70,7 @@ function Message ({ avatar, user, text, date, isMe, isReaded, attachments, isTyp
       </div>
       <div className="message__container">
         <IconReaded isMe={isMe} isReaded={isReaded}/>
-{(text || isTyping) && <div className="message__bubble">
+        {(text || isTyping) && <div className="message__bubble">
           {text && <p className="message__text">{text}</p>}
             {isTyping && <div className="message__typing">
             <span />
