@@ -1,37 +1,43 @@
 import React from "react";
 
-import { Message } from "../../components/indexComponents";
-import { DialogItem } from "../../components/indexComponents";
+import { Message, Dialogs } from "../../components/indexComponents";
 
 import "./Home.scss";
 
-function Home() {
+const Home = () => {
   return (
     <section className="home">
-      <div className="dialogs">
-        <DialogItem user={{
-          fullname: 'Федор Достоевский',
-          isOnline: false
-        }}
-          unreaded={0}
-          online
-          />
-      </div>
-      
-    {/*<Dialogs items={[
+      <Dialogs 
+        userId={0}
+        items={[
         {
-          user: {
+          _id: Math.random(),
+          text: "Мы все свидетельствуем Вам глубочайшее наше почтение и целуем Ваши ручки, дражайший папенька: Михайла, Федор, Варвара и Андрюша",
+            created_at: "Sun May 11 2019 21:16:55",
+            user: {
+              _id: 1,
             fullname: "Федор Достоевский",
             avatar: null
-          },
-          message: {
-            text: "Мы все свидетельствуем Вам глубочайшее наше почтение и целуем Ваши ручки, дражайший папенька: Михайла, Федор, Варвара и Андрюша",
-            isReaded: false,
-            created_at: new Date()
+          }
+        },
+        {
+          _id: Math.random(),
+          text: "Привет! Как твои дела?",
+            created_at: "Sun May 12 2019 21:16:55",
+            user: {
+              _id: 1,
+            fullname: "Алан Тьюринг",
+            avatar: 'https://b1.filmpro.ru/c/278960.700xp.jpg'
           }
         }
       ]}
-      />*/}
+      />
+      <Message
+        avatar="https://sun9-45.userapi.com/impg/604pXax9N6--gZ1nVeUdAF7lWyswBCkIzwXzPQ/P7K86r7Anec.jpg?size=50x0&quality=96&crop=0,0,1790,1790&sign=64dd05d8cf09f8d434cf3e72fe635fd1&ava=1"
+        date="Sun Apr 21 2019 21:16:55"
+        audio="https://2u039f-a.akamaihd.net/downloads/ringtones/files/mp3/instrument2-2384.mp3"
+      />
+      
 {/*      <Message
         avatar="https://sun9-45.userapi.com/impg/604pXax9N6--gZ1nVeUdAF7lWyswBCkIzwXzPQ/P7K86r7Anec.jpg?size=50x0&quality=96&crop=0,0,1790,1790&sign=64dd05d8cf09f8d434cf3e72fe635fd1&ava=1"
         text="Салам, Брут! Чё, как, уничтожил флот галлов? 🖐🏻"
