@@ -4,7 +4,6 @@ import { MessageModel } from "../models/indexModels";
 class MessageController {
     index(req: express.Request, res: express.Response) {
 
-      console.log(req.body.dialog);
         const dialogId = req.body.dialog;
     
         MessageModel.find()

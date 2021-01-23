@@ -31,9 +31,11 @@ mongoose.connect("mongodb://localhost:27017/chat", {
 });
 
 app.get("/user/:id", User.show);
+app.get("/user/me/profile", User.getMe);
 app.post("/user/registration", User.create);
 app.post("/user/login", User.login);
 app.delete("/user/:id", User.delete);
+
 
 app.get("/dialogs", Dialog.index);
 app.post("/dialogs", Dialog.create);

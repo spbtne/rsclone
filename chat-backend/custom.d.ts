@@ -1,8 +1,9 @@
-import { IUser } from "./src/models/User"
-
-declare namespace Express {
+declare global {
+    declare namespace Express {
+    import { IUser } from "./src/models/User";
+  
     export interface Request {
-        user?: IUser;
+      user?: IUser;
     }
+  }
 }
-
