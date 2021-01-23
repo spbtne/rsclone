@@ -1,50 +1,26 @@
-import mongoose from "mongoose";
 import express from "express";
-import bodyParser from "body-parser";
 import dotenv from 'dotenv';
 
-import {
-  UserController,
-  DialogController,
-  MessageController,
-} from "./controllers/indexControllers";
-
-import { updateLastSeen, checkAuth } from './middleware/indexMiddleWare';
-
-
-const app = express();
+import './core/db';
+import createRoutes from './core/routes'
 dotenv.config();
 
-app.use(bodyParser.json());
-app.use(updateLastSeen);
-app.use(checkAuth);
+const app = express();
+const server = require('http').Server(app);
+const useSocket = require('socket.io');
+const io = useSocket(server,{cors:{origin:"*"}})
 
-const User = new UserController();
-const Dialog = new DialogController();
-const Messages = new MessageController();
+createRoutes(app);
 
-mongoose.connect("mongodb://localhost:27017/chat", {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
+
+io.on('connection', (socket: any) => {
+  console.log('a user connected');
+  socket.emit("test command", "some text");
+
+  socket.on('console command', (msg:any) => {
+    console.log('console text ' + msg)})
 });
 
-app.get("/user/:id", User.show);
-app.get("/user/me/profile", User.getMe);
-app.post("/user/registration", User.create);
-app.post("/user/login", User.login);
-app.delete("/user/:id", User.delete);
-
-
-app.get("/dialogs", Dialog.index);
-app.post("/dialogs", Dialog.create);
-app.delete("/dialogs/:id", Dialog.delete);
-
-app.get("/messages", Messages.index);
-app.post("/messages", Messages.create);
-app.delete("/messages/:id", Messages.delete);
-
-app.listen(process.env.PORT, function () {
+server.listen(process.env.PORT, function () {
   console.log(`Server: http://localhost:${process.env.PORT}`);
 });
