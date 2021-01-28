@@ -1,4 +1,5 @@
 import express from "express";
+import socket from "socket.io";
 import { validationResult, Result, ValidationError } from "express-validator";
 import { UserModel } from "../models/indexModels";
 import createJWTToken from "../utils/createJWTToken";
@@ -8,7 +9,13 @@ import bcrypt from "bcryptjs";
 
 
 class UserController {
-  show(req: express.Request, res: express.Response) {
+
+  io: socket.Server;
+
+  constructor(io: socket.Server) {
+    this.io = io;
+  }
+  show = (req: express.Request, res: express.Response) => {
     const id = req.params.id;
     UserModel.findById(id, (err: any, user: any) => {
       if (err) {
@@ -17,7 +24,7 @@ class UserController {
       res.json(user);
     });
   }
-  getMe(req: any, res: express.Response) {
+  getMe = (req: any, res: express.Response) => {
     const id = req.user.data._doc._id;
     UserModel.findById(id, (err: any, user: any) => {
       if (err) {
@@ -27,7 +34,7 @@ class UserController {
     });
   };
   
-  create(req: express.Request, res: express.Response) {
+  create = (req: express.Request, res: express.Response) => {
     const postData = {
       email: req.body.email,
       fullname: req.body.fullname,
@@ -43,7 +50,7 @@ class UserController {
         res.json(reason);
       });
   }
-  delete(req: express.Request, res: express.Response) {
+  delete = (req: express.Request, res: express.Response) => {
     const id = req.params.id;
     UserModel.findOneAndDelete({ _id: id })
       .then((user: any) => {
@@ -55,7 +62,7 @@ class UserController {
         });
       });
   }
-  login(req: express.Request, res: express.Response) {
+  login = (req: express.Request, res: express.Response) => {
     const postData = {
       email: req.body.email,
       password: req.body.password,

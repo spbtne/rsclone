@@ -2,9 +2,17 @@ import { json } from "body-parser";
 import express from "express";
 import mongoose from "mongoose";
 import { DialogModel, MessageModel } from "../models/indexModels";
+import socket from 'socket.io';
 
 class DialogController {
-  index(req: express.Request, res: express.Response) {
+
+  io: socket.Server;
+
+  constructor(io: socket.Server) {
+    this.io = io;
+  }
+
+  index = (req: express.Request, res: express.Response) => {
 
     const authorId = req.body.author;
 
@@ -20,7 +28,7 @@ class DialogController {
         return res.json(dialogs);
       });
   }
-  create(req: express.Request, res: express.Response) {
+  create = (req: express.Request, res: express.Response) => {
     const postData = {
       author: req.body.author,
       partner: req.body.partner,
@@ -48,7 +56,7 @@ class DialogController {
         res.json(reason);
       });
   }
-  delete(req: express.Request, res: express.Response) {
+  delete = (req: express.Request, res: express.Response) => {
     const id = req.params.id;
     DialogModel.findOneAndDelete({ _id: id })
       .then((dialog: any) => {

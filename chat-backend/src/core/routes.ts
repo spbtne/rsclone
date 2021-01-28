@@ -13,10 +13,10 @@ import {
   MessageCtrl,
 } from "../controllers/indexControllers";
 
-const createRoutes = (app: express.Express) => {
-  const UserController = new UserCtrl();
-  const DialogController = new DialogCtrl();
-  const MessageController = new MessageCtrl();
+const createRoutes = (app: express.Express, io: socket.Server) => {
+  const UserController = new UserCtrl(io);
+  const DialogController = new DialogCtrl(io);
+  const MessageController = new MessageCtrl(io);
 
   app.use(bodyParser.json());
   app.use(updateLastSeen);
