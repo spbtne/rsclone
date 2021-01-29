@@ -90,11 +90,13 @@ function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments,
             )}
             {audio && (
               <div className="message__audio">
-                <div className="message__audio-progress" style={{ width: '40%' }}></div>
+                <div
+                  className="message__audio-progress"
+                  style={{ width: '40%', height: '100%' }}></div>
                 <div className="message__audio-info">
                   <div className="message__audio-btn">
                     <button>
-                      {isPlaying ? (
+                      {!isPlaying ? (
                         <img src={pauseSvg} alt="Pause svg" />
                       ) : (
                         <img src={playSvg} alt="Play svg" />
@@ -108,7 +110,7 @@ function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments,
                 </div>
               </div>
             )}
-            <div class="chat-bubble"></div>
+            <div className="chat-bubble"></div>
             <img
               src={
                 isMe

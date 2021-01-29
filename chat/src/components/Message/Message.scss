@@ -56,13 +56,16 @@ $self: '.message';
 
   &--is-audio {
     #{$self}__bubble {
-      width: 250px;
+      width: 280px;
+      position: relative;
+      overflow: hidden;
     }
     #{$self}__audio {
       &-info {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        position: relative;
       }
       &-btn {
         button {
@@ -76,6 +79,18 @@ $self: '.message';
             height: 16px;
           }
         }
+      }
+      &-duration {
+        color: #ffffff;
+        font-weight: 500;
+        opacity: 0.5;
+        font-size: 12px;
+      }
+      &-progress {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: #418fff;
       }
     }
   }
