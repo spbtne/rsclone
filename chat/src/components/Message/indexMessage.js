@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import formatDistanceToNow from "date-fns/formatDistanceToNow";
 // import ruLocale from "date-fns/locale/ru";
@@ -64,6 +64,40 @@ import IconReaded from '../IconReaded/indexIconReaded';
 
 function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments, isTyping }) {
   const [isPlaying, setIsPlaing] = useState(false);
+  const audioElem = useRef(null);
+
+  useEffect(() => {
+    audioElem.current.addEventListener(
+      'playing',
+      () => {
+        setIsPlaing(true);
+      },
+      false,
+    );
+    audioElem.current.addEventListener(
+      'ended',
+      () => {
+        setIsPlaing(false);
+      },
+      false,
+    );
+    audioElem.current.addEventListener(
+      'pause',
+      () => {
+        setIsPlaing(false);
+      },
+      false,
+    );
+  }, []);
+
+  const togglePlay = () => {
+    audioElem.current.volume = '0.1';
+    if (!isPlaying) {
+      audioElem.current.play();
+    } else {
+      audioElem.current.pause();
+    }
+  };
 
   return (
     <div
@@ -90,13 +124,14 @@ function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments,
             )}
             {audio && (
               <div className="message__audio">
+                <audio volume="0.1" ref={audioElem} src={audio} preload="auto" />
                 <div
                   className="message__audio-progress"
                   style={{ width: '40%', height: '100%' }}></div>
                 <div className="message__audio-info">
                   <div className="message__audio-btn">
-                    <button>
-                      {!isPlaying ? (
+                    <button onClick={togglePlay}>
+                      {isPlaying ? (
                         <img src={pauseSvg} alt="Pause svg" />
                       ) : (
                         <img src={playSvg} alt="Play svg" />
