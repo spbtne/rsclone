@@ -94,6 +94,8 @@ $self: '.message';
         left: 0;
         top: 0;
         background-color: #418fff;
+        height: 100%;
+        transition: width 0.3s ease;
       }
     }
   }

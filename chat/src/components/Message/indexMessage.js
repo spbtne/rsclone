@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 // import formatDistanceToNow from "date-fns/formatDistanceToNow";
 // import ruLocale from "date-fns/locale/ru";
 import classNames from 'classnames';
+
+import { convertCurrentTime } from '../../utils/helpers';
+
 import readedSvg from '../../assets/img/readed.svg';
 import noReadedSvg from '../../assets/img/no-read.svg';
 import readedSvgWhite from '../../assets/img/readedWhite.svg';
@@ -82,6 +85,7 @@ function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments,
       () => {
         setIsPlaing(false);
         setProgress(0);
+        setCurrentTime(0);
       },
       false,
     );
@@ -134,9 +138,7 @@ function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments,
             {audio && (
               <div className="message__audio">
                 <audio volume="0.1" ref={audioElem} src={audio} preload="auto" />
-                <div
-                  className="message__audio-progress"
-                  style={{ width: progress + '%', height: '100%' }}></div>
+                <div className="message__audio-progress" style={{ width: progress + '%' }}></div>
                 <div className="message__audio-info">
                   <div className="message__audio-btn">
                     <button onClick={togglePlay}>
@@ -150,7 +152,7 @@ function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments,
                   <div className="message__audio-wave">
                     <img src={waveSvg} alt="Wave svg" />
                   </div>
-                  <span className="message__audio-duration">00:19</span>
+                  <span className="message__audio-duration">{convertCurrentTime(currentTime)}</span>
                 </div>
               </div>
             )}
