@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { Message, Dialogs } from "../../components/indexComponents";
+import { Message, Dialogs } from '../../components/indexComponents';
 
-import "./Home.scss";
+import './Home.scss';
 
 const Home = () => {
   return (
@@ -13,22 +13,22 @@ const Home = () => {
           {
             _id: Math.random(),
             text:
-              "Мы все свидетельствуем Вам глубочайшее наше почтение и целуем Ваши ручки, дражайший папенька: Михайла, Федор, Варвара и Андрюша",
-            created_at: "Sun May 11 2019 21:16:55",
+              'Мы все свидетельствуем Вам глубочайшее наше почтение и целуем Ваши ручки, дражайший папенька: Михайла, Федор, Варвара и Андрюша',
+            created_at: 'Sun May 11 2019 21:16:55',
             user: {
               _id: 1,
-              fullname: "Федор Достоевский",
+              fullname: 'Федор Достоевский',
               avatar: null,
             },
           },
           {
             _id: Math.random(),
-            text: "Привет! Как твои дела?",
-            created_at: "Fri Jan 22 2021 12:16:55",
+            text: 'Привет! Как твои дела?',
+            created_at: 'Fri Jan 22 2021 12:16:55',
             user: {
               _id: 1,
-              fullname: "Алан Тьюринг",
-              avatar: "https://b1.filmpro.ru/c/278960.700xp.jpg",
+              fullname: 'Алан Тьюринг',
+              avatar: 'https://b1.filmpro.ru/c/278960.700xp.jpg',
             },
           },
         ]}
