@@ -64,9 +64,12 @@ import IconReaded from '../IconReaded/indexIconReaded';
 
 function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments, isTyping }) {
   const [isPlaying, setIsPlaing] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
   const audioElem = useRef(null);
 
   useEffect(() => {
+    audioElem.current.volume = '0.1';
     audioElem.current.addEventListener(
       'playing',
       () => {
@@ -78,6 +81,7 @@ function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments,
       'ended',
       () => {
         setIsPlaing(false);
+        setProgress(0);
       },
       false,
     );
@@ -88,10 +92,15 @@ function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments,
       },
       false,
     );
+    audioElem.current.addEventListener('timeupdate', () => {
+      const duration = (audioElem.current && audioElem.current.duration) || 0;
+      setCurrentTime(audioElem.current.currentTime);
+
+      setProgress((audioElem.current.currentTime / duration) * 100);
+    });
   }, []);
 
   const togglePlay = () => {
-    audioElem.current.volume = '0.1';
     if (!isPlaying) {
       audioElem.current.play();
     } else {
@@ -127,7 +136,7 @@ function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments,
                 <audio volume="0.1" ref={audioElem} src={audio} preload="auto" />
                 <div
                   className="message__audio-progress"
-                  style={{ width: '40%', height: '100%' }}></div>
+                  style={{ width: progress + '%', height: '100%' }}></div>
                 <div className="message__audio-info">
                   <div className="message__audio-btn">
                     <button onClick={togglePlay}>
