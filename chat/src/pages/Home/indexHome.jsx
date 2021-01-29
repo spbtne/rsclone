@@ -11,24 +11,24 @@ const Home = () => {
         userId={0}
         items={[
           {
-            _id: Math.random(),
+            _id: 'd95b2b8d46ebc680284bb1e90692f8d4',
             text:
               'Мы все свидетельствуем Вам глубочайшее наше почтение и целуем Ваши ручки, дражайший папенька: Михайла, Федор, Варвара и Андрюша',
             created_at: 'Sun May 11 2019 21:16:55',
             user: {
-              _id: 1,
+              _id: 'd95b2b8d46ebc680284bb1e90692f8d4',
               fullname: 'Федор Достоевский',
-              avatar: null,
+              avatar: 'https://kupidonia.ru/content/crossword/photo/big/235_1.jpg',
             },
           },
           {
-            _id: Math.random(),
+            _id: 'd95b2b8d46ebc680284bb1e90692f8d4',
             text: 'Привет! Как твои дела?',
             created_at: 'Fri Jan 22 2021 12:16:55',
             user: {
-              _id: 1,
+              _id: 'd95b2b8d46ebc680284bb1e90692f8d4',
               fullname: 'Алан Тьюринг',
-              avatar: 'https://b1.filmpro.ru/c/278960.700xp.jpg',
+              avatar: null,
             },
           },
         ]}
