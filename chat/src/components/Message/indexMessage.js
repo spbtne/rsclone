@@ -19,52 +19,6 @@ import Time from '../Time/indexTime';
 import './Message.scss';
 import IconReaded from '../IconReaded/indexIconReaded';
 
-// const Message = ({ avatar, user, text, date, audio, isMe, isReaded, attachments, isTyping }) => {
-//   return (
-//     <div className={classNames("message", {
-//     "message--isme": isMe,
-//     "message--is-typing": isTyping,
-//     "message--is-audio": audio,
-//     "message--image": attachments && attachments.length === 1})}>
-//       <div className="message__avatar">
-//         <img src={avatar} alt={`${user.fullname} avatar`} />
-//       </div>
-//       <div className="message__container">
-//         <IconReaded isMe={isMe} isReaded={isReaded}/>
-//           {!audio && (text || isTyping) && <div className="message__bubble">
-//           {text && <p className="message__text">{text}</p>}
-//             {isTyping && <div className="message__typing">
-//             <span />
-//             <span />
-//             <span />
-//           </div>}
-//           <div class="chat-bubble">
-
-//           </div>
-//           <img
-//             src={isMe ? (isReaded ? readedSvg : noReadedSvg) : (isReaded ? readedSvgWhite : noReadedSvgWhite)}
-//             alt="Check icon"
-//             className="message__check-icon"
-//           />
-//         </div>}
-//         <div className="message__attachments">
-//           {attachments &&
-//             attachments.map((item) => (
-//               <div className="message__attachments-item">
-//                 <img src={item.url} alt={item.filename} />
-//               </div>
-//             ))}
-//         </div>
-//         {date && (
-//         <span className="message__date">
-//           <Time date={date} />
-//         </span>
-//   )}
-//       </div>
-//     </div>
-//   );
-// }
-
 const MessageAudio = ({ audioSrc }) => {
   const audioElem = useRef(null);
 
@@ -178,8 +132,8 @@ function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments,
         )}
         {attachments && (
           <div className="message__attachments">
-            {attachments.map((item) => (
-              <div className="message__attachments-item">
+            {attachments.map((item, index) => (
+              <div key={index} className="message__attachments-item">
                 <img src={item.url} alt={item.filename} />
               </div>
             ))}

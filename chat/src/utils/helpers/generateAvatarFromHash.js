@@ -13,11 +13,11 @@ const getCorrectIndex = (number) => {
 
 export default (hash) => {
   const [r, g, b] = hash
-    .substr(3, 6)
+    .substr(0, 3)
     .split('')
     .map((char) => getCorrectIndex(char.charCodeAt(0)));
   return {
-    color: tinycolor({ r, g, b }).toHexString(),
-    colorLighten: tinycolor({ r, g, b }).lighten(40).toHexString(),
+    color: tinycolor({ r, g, b }).lighten(15).saturate(50).toHexString(),
+    colorLighten: tinycolor({ r, g, b }).lighten(40).saturate(50).toHexString(),
   };
 };

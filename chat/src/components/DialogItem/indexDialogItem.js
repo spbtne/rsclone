@@ -5,7 +5,6 @@ import isToday from 'date-fns/isToday';
 import IconReaded from '../IconReaded/indexIconReaded';
 import Avatar from '../Avatar/indexAvatar';
 
-import './DialogItem.scss';
 
 const getFreshDate = (dateString) => {
   const date = new Date(dateString);
