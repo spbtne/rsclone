@@ -27,11 +27,11 @@ class MessageController {
         return res.json(messages);
       });
   };
-  create = (req: express.Request, res: express.Response) => {
-    const userId = req.body.partner;
+  create = (req: any, res: express.Response) => {
+    const userId = req.user.data._doc._id;
     const postData = {
       text: req.body.text,
-      partner: userId,
+      user: userId,
       dialog: req.body.dialog,
     };
     const message = new MessageModel(postData);
@@ -46,7 +46,7 @@ class MessageController {
             });
           }
           res.json(message);
-          this.io.emit("SERVER: NEW_MESSAGE ", message);
+          this.io.emit("SERVER:NEW_MESSAGE ", message);
         });
       })
       .catch((reason: any) => {
