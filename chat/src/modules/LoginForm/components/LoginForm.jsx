@@ -9,6 +9,7 @@ import {
 import { Button, Block } from "../../../components/indexComponents";
 import { validateField } from '../../../utils/helpers'
 
+
 const LoginForm = props => {
   const {
     values,
@@ -45,6 +46,7 @@ const LoginForm = props => {
                 </Form.Item>
                 <Form.Item
               validateStatus={validateField("password", touched, errors)}
+
               help={!touched.password ? "" : errors.password}
               hasFeedback
             >

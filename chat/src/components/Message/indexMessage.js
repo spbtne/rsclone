@@ -154,6 +154,7 @@ function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments,
             <Time date={date} />
           </span>
         )}
+
       </div>
     </div>
   );
@@ -168,11 +169,12 @@ Message.propTypes = {
   text: PropTypes.string,
   date: PropTypes.object,
   user: PropTypes.object,
-  attachments: PropTypes.array,
+
   isMe: PropTypes.bool,
   isReaded: PropTypes.bool,
   isTyping: PropTypes.bool,
   audio: PropTypes.string,
+
 };
 
 export default Message;

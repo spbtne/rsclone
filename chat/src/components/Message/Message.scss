@@ -2,19 +2,23 @@
 
 $self: '.message';
 
+
 .message {
   display: flex;
   max-width: 440px;
   margin-bottom: 20px;
 
+
   &__avatar {
     display: flex;
     flex-direction: column-reverse;
+    
     .avatar {
       width: 33px;
       height: 33px;
       border-radius: 50px;
       margin-right: 13px;
+
       margin-bottom: 5px;
       font-size: 14px;
       line-height: 31px;
@@ -181,4 +185,5 @@ $self: '.message';
   to {
     opacity: 1;
   }
+
 }

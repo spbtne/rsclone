@@ -15,6 +15,7 @@ export default withFormik({
     let errors = {};
     validateForm({ isAuth: false, values, errors });
 
+
     return errors;
   },
 

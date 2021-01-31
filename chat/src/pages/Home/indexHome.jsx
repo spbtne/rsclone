@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from 'antd';
 import { TeamOutlined, FormOutlined, EllipsisOutlined, SmileOutlined } from "@ant-design/icons";
@@ -50,5 +51,6 @@ const Home = () => {
     </section>
   );
 };
+
 
 export default Home;

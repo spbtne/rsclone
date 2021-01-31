@@ -14,6 +14,7 @@ import {
 import { Button, Block } from "../../../components/indexComponents";
 import { validateField } from '../../../utils/helpers'
 
+
 const success = true;
 
 const RegistrationForm = (props) => {
@@ -37,6 +38,7 @@ const RegistrationForm = (props) => {
             <Form.Item
               validateStatus={validateField("email", touched, errors)}
               help={!touched.email ? "" : errors.email}
+
               rules={[
                 {
                   required: true,
@@ -60,6 +62,7 @@ const RegistrationForm = (props) => {
                   {errors.email}
                 </span>
               )} */}
+
             </Form.Item>
             <Form.Item
               name="userlogin"
@@ -78,8 +81,10 @@ const RegistrationForm = (props) => {
             </Form.Item>
 
             <Form.Item
+
               validateStatus={validateField("password", touched, errors)}
               help={!touched.password ? "" : errors.password}
+
               rules={[
                 {
                   required: true,
@@ -101,6 +106,7 @@ const RegistrationForm = (props) => {
                   visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
                 }
               />
+
               {/* {errors.password && touched.password && (
                 <span className="error error-password" id="feedback">
                   {errors.password}
@@ -108,6 +114,7 @@ const RegistrationForm = (props) => {
               )} */}
             </Form.Item>
             <Form.Item validateStatus={validateField("password", touched, errors)}
+
               name="password-repeat"
               rules={[
                 {
@@ -118,7 +125,9 @@ const RegistrationForm = (props) => {
             >
               <Input.Password
                 size="large"
+
                 type="password2"
+
                 placeholder="Повторите пароль"
                 prefix={<LockOutlined />}
                 iconRender={(visible) =>
