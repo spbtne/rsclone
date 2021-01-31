@@ -4,11 +4,17 @@ import validateForm from "../../../utils/validate";
 
 export default withFormik({
   //   mapPropsToValues: () => ({ email: "test@asd.com" }), set default value
+  enableReinitialize: true,
+  mapPropsToValues: () => ({
+    email: '',
+    fullname: '',
+    password: '',
+    password2: ''
+  }),
   validate: values => {
     let errors = {};
-    const validate = validateForm({ isAuth: false });
+    validateForm({ isAuth: false, values, errors });
 
-    Object.keys(values).forEach(key => validate[key] && validate[key](errors, values[key]));
 
     return errors;
   },

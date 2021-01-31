@@ -1,55 +1,56 @@
-import React from "react";
 
-import { Message } from "../../components/indexComponents";
+import React from 'react';
+import { Button } from 'antd';
+import { TeamOutlined, FormOutlined, EllipsisOutlined, SmileOutlined } from "@ant-design/icons";
+import { Status, ChatInput } from '../../components/indexComponents';
+import { Dialogs, Messages } from "../../containers/indexContainers"
 
-import "./Home.scss";
+import './Home.scss';
 
-function Home() {
+const Home = () => {
   return (
     <section className="home">
-      <Message
-        avatar="https://sun9-45.userapi.com/impg/604pXax9N6--gZ1nVeUdAF7lWyswBCkIzwXzPQ/P7K86r7Anec.jpg?size=50x0&quality=96&crop=0,0,1790,1790&sign=64dd05d8cf09f8d434cf3e72fe635fd1&ava=1"
-        text="Салам, Брут! Чё, как, уничтожил флот галлов? 🖐🏻"
-        date={new Date(2021, 0, 14, 13, 26, 46)}
-        isReaded={false}
-        attachments={[
-            {
-              fileName: "image.jpg",
-              url: "https://source.unsplash.com/100x100/?random1&nature,water",
-            },
-            {
-              fileName: "image.jpg",
-              url: "https://source.unsplash.com/100x100/?random2&nature,water",
-            },
-            {
-              fileName: "image.jpg",
-              url: "https://source.unsplash.com/100x100/?random3&nature,water",
-            },
-          ]}
-      ></Message>
-      <Message
-        avatar="https://sun9-45.userapi.com/impg/604pXax9N6--gZ1nVeUdAF7lWyswBCkIzwXzPQ/P7K86r7Anec.jpg?size=50x0&quality=96&crop=0,0,1790,1790&sign=64dd05d8cf09f8d434cf3e72fe635fd1&ava=1"
-        text="Салам, Брут! Чё, как, уничтожил флот галлов? 🖐🏻"
-        date={new Date(2021, 0, 14, 13, 16, 46)}
-        isMe={true}
-        isReaded={true}
-        attachments={[
-          {
-            fileName: "image.jpg",
-            url: "https://source.unsplash.com/100x100/?random1&nature,water",
-          },
-          {
-            fileName: "image.jpg",
-            url: "https://source.unsplash.com/100x100/?random2&nature,water",
-          },
-          {
-            fileName: "image.jpg",
-            url: "https://source.unsplash.com/100x100/?random3&nature,water",
-          },
-        ]}
-      ></Message>
+        <div className="chat">
+          <div className="chat__sidebar">
+            <div className="chat__sidebar-header">
+              <div>
+                <TeamOutlined />
+                <span>Список диалогов</span>
+              </div>
+              <Button type="link" shape="circle" icon={<FormOutlined />}/>
+            </div>
+            <div className="chat__sidebar-dialogs">
+            
+              <Dialogs
+                userId={0}
+              />
+            </div>
+
+          </div>
+          <div className="chat__dialog">
+            <div className="chat__dialog-header">
+            <div>
+
+            </div>
+                <div className="chat__dialog-header-center">
+                  <b className="chat__dialog-header-username">Гай Юлий Цезарь</b>
+                  <div className="chat__dialog-header-status">
+                    <Status online />
+                  </div>
+                </div>
+                <Button type="link" shape="circle" icon={<EllipsisOutlined />}/>
+            </div>
+            <div className="chat__dialog-messages">
+                <Messages />
+            </div>
+              <div className="chat__dialog-input">
+                <ChatInput />
+              </div>
+          </div>
+        </div>
     </section>
   );
-}
+};
+
 
 export default Home;
