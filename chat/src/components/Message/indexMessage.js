@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 // import formatDistanceToNow from "date-fns/formatDistanceToNow";
 // import ruLocale from "date-fns/locale/ru";
 import classNames from 'classnames';
+import { Emoji } from 'emoji-mart';
 
 import { convertCurrentTime } from '../../utils/helpers';
 
@@ -15,6 +16,7 @@ import playSvg from '../../assets/img/play.svg';
 import pauseSvg from '../../assets/img/pause.svg';
 
 import Time from '../Time/indexTime';
+import Avatar from '../Avatar/indexAvatar';
 
 import './Message.scss';
 import IconReaded from '../IconReaded/indexIconReaded';
@@ -99,13 +101,21 @@ function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments,
         'message--image': attachments && attachments.length === 1,
       })}>
       <div className="message__avatar">
-        <img src={avatar} alt={`${user.fullname} avatar`} />
+      <Avatar user={user} />
       </div>
       <div className="message__container">
         <IconReaded isMe={isMe} isReaded={isReaded} />
         {(audio || text || isTyping) && (
           <div className="message__bubble">
-            {text && <p className="message__text">{text}</p>}
+            {text && (
+              <p className="message__text">
+                <Emoji
+                  emoji=":santa::skin-tone-3:"
+                  set="apple"
+                  size={16} 
+                />
+              </p>
+              )}
             {isTyping && (
               <div className="message__typing">
                 <span />

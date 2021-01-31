@@ -10,12 +10,14 @@ $self: '.message';
   &__avatar {
     display: flex;
     flex-direction: column-reverse;
-    img {
+    .avatar {
       width: 33px;
       height: 33px;
       border-radius: 50px;
       margin-right: 13px;
       margin-bottom: 5px;
+      font-size: 14px;
+      line-height: 31px;
     }
   }
   &__bubble {

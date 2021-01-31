@@ -16,6 +16,10 @@
     display: flex;
     margin-bottom: 20px;
 
+    &--selected {
+     background-color: #f7f8f9;
+    }
+
         &-avatar {
           position: relative;
       flex: 0 0 40px;
