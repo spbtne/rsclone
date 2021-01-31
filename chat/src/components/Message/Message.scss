@@ -1,0 +1,86 @@
+@import "../../styles/variables";
+
+$self: ".message";
+
+.message {
+  display: flex;
+  max-width: 440px;
+  margin-bottom: 10px;
+
+  &__avatar {
+    display: flex;
+    flex-direction: column-reverse;
+    img {
+      width: 33px;
+      height: 33px;
+      border-radius: 50px;
+      margin-right: 13px;
+      margin-bottom: 23px;
+    }
+  }
+  &__bubble {
+    background: $blue;
+    box-shadow: 0px 5px 5px rgba(54, 116, 255, 0.196733);
+    border-radius: 12px 12px 12px 0px;
+    padding: 13px 13px 24px 13px;
+    margin-bottom: 9px;
+    position: relative;
+  }
+  &__text {
+    color: white;
+    margin: 0;
+    line-height: 20px;
+  }
+  &__date {
+    font-size: 12px;
+    opacity: 0.4;
+  }
+  &__check-icon {
+    position: absolute;
+    right: 16px;
+    bottom: 10px;
+  }
+  &__attachments {
+    display: flex;
+    margin-bottom: 5px;
+    &-item {
+      margin-right: 5px;
+      cursor: pointer;
+    }
+    img {
+      width: 45px;
+      height: 45px;
+      border-radius: 20%;
+    }
+  }
+  &--isme {
+    display: flex;
+    flex-direction: row-reverse;
+    align-self: flex-end;
+    #{$self}__content {
+      margin-bottom: 15px;
+    }
+    #{$self}__bubble {
+      background: #ffffff;
+      border: 1px solid #ececec;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.0220444);
+      border-radius: 12px 12px 0px 12px;
+    }
+    #{$self}__text {
+      color: $dark-text;
+    }
+    #{$self}__avatar {
+      img {
+        margin-right: 0;
+        margin-left: 13px;
+      }
+    }
+    #{$self}__date {
+      display: block;
+      text-align: end;
+    }
+    #{$self}__attachments {
+      flex-direction: row-reverse;
+    }
+  }
+}

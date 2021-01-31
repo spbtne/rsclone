@@ -1,0 +1,84 @@
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  &__top {
+    text-align: center;
+    margin-bottom: 50px;
+    h2 {
+      font-size: 28px;
+      margin-bottom: 13px;
+    }
+    p {
+      opacity: 0.5;
+      font-size: 18px;
+      line-height: 21px;
+      letter-spacing: 0.1px;
+    }
+  }
+
+  &__registration-link,
+  &__login-link,
+  &__success--block {
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.1px;
+    color: #adadad;
+    display: block;
+    text-align: center;
+
+    margin-top: 30px;
+  }
+  &__success--block {
+    margin-top: 0;
+    svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 15px;
+    }
+  }
+  &__success--block {
+    height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    line-height: 26px;
+  }
+  .block {
+    width: 430px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    form {
+      width: 100%;
+    }
+  }
+
+  .button {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.1px;
+    width: 100%;
+  }
+  #username,
+  #password,
+  #password-repeat,
+  #userlogin,
+  #email {
+    margin-left: 5px;
+  }
+  .error {
+    position: absolute;
+    top: 42px;
+    left: 5px;
+    font-size: 12px;
+    color: red;
+  }
+}
