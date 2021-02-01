@@ -35,7 +35,8 @@ const Actions = {
   },
   fetchUserRegistration: (postData) => (dispatch) => {
     return userApi.registration(postData).then(({ data }) => {
-      console.log(data)
+      window.localStorage["email_hash"] = data.obj.confirm_hash;
+      // console.log(data)
       return data;
     });
   },

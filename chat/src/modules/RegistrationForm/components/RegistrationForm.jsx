@@ -24,7 +24,7 @@ const RegistrationForm = (props) => {
     handleChange,
     handleBlur,
     handleSubmit,
-    isSubmitting,
+    isSubmitting
   } = props;
   return (
     <div>
@@ -117,7 +117,7 @@ const RegistrationForm = (props) => {
               />
             </Form.Item>
             <Form.Item>
-              <Button
+            <Button
                 disabled={isSubmitting}
                 onClick={handleSubmit}
                 type="primary"

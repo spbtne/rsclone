@@ -1,4 +1,3 @@
-
 import React from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
@@ -11,14 +10,19 @@ const App = (props) => {
   return (
     <div className="wrapper">
       <Router>
-        <Route exact path={["/login", "/registration"]} component={Auth} />
         <Route
-            path="/"
-            render={() => (isAuth ? <Home /> : <Redirect to="/login" />)}
-          />
+          exact
+          path={["/login", "/registration", "/registration/verify"]}
+          component={Auth}
+        />
+        <Route
+          exact
+          path="/"
+          render={() => (isAuth ? <Home /> : <Redirect to="/login" />)}
+        />
       </Router>
     </div>
   );
 };
 
-export default connect(({ user }) => ({ isAuth: user.isAuth}))(App);
+export default connect(({ user }) => ({ isAuth: user.isAuth }))(App);

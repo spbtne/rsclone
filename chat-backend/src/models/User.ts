@@ -44,7 +44,6 @@ const UserSchema: Schema = new Schema(
 );
 
 
-
 UserSchema.pre<IUser>("save", async function (next) {
   // eslint-disable-next-line @typescript-eslint/no-this-alias
   const user = this;
@@ -56,6 +55,8 @@ UserSchema.pre<IUser>("save", async function (next) {
   user.password = await generatePasswordHash(user.password);
   user.confirm_hash = await generatePasswordHash(new Date().toString());
 });
+
+
 
 const UserModel = mongoose.model<IUser>("User", UserSchema);
 

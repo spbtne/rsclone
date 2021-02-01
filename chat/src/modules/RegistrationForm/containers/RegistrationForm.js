@@ -27,9 +27,9 @@ export default withFormik({
       .then(({ status }) => {
         setTimeout(() => {
           if (status === "success") {
-            props.history.push("/");
+            props.history.push("/registration/verify");
           }
-        }, 50);
+        }, 300);
 
         setSubmitting(false);
       })

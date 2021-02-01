@@ -12,15 +12,13 @@ export default ({ isAuth, values, errors }) => {
         errors.password = "Введите пароль";
       } else if (
         !isAuth &&
-        !/^(?=.*[0-9])(?=.*[a-z])[0-9a-z]{6,}/.test(
-          value
-        )
+        !/^(?=.*[0-9])(?=.*[a-z])[0-9a-z]{6,}/.test(value)
       ) {
         errors.password = isAuth ? "Неверный пароль" : "Слишком легкий пароль";
       }
     },
     password_2: (value) => {
-      if (!isAuth && value != values.password) {
+      if (!isAuth && value !== values.password) {
         errors.password_2 = "Пароли не совпадают";
       }
     },
