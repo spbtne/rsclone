@@ -6,6 +6,11 @@ const Actions = {
     type: "USER:SET_DATA",
     payload: data,
   }),
+  fetchUserData: () => (dispatch) => {
+    userApi.getMe().then(({ data }) => {
+      dispatch(Actions.setUserData(data));
+    });
+  },
   fetchUserLogin: (postData) => (dispatch) => {
     return userApi.login(postData).then(({ data }) => {
       const { status, token } = data;
@@ -21,8 +26,11 @@ const Actions = {
           text: "Авторизация успешна.",
           type: "success",
         });
-        dispatch(Actions.setUserData(data));
+        window.axios.defaults.headers.common["token"] = token;
+        window.localStorage["token"] = token;
+        dispatch(Actions.fetchUserData());
       }
+      return data;
     });
   },
 };

@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { connect } from 'react-redux';
+
 import { Button } from 'antd';
 import { TeamOutlined, FormOutlined, EllipsisOutlined, SmileOutlined } from "@ant-design/icons";
 import { Status, ChatInput } from '../../components/indexComponents';

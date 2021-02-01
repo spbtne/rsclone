@@ -11,6 +11,7 @@ export default ({ isAuth, values, errors }) => {
     if (!value) {
       errors.password = 'Введите пароль';
     } else if (
+      !isAuth &&
       !/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/.test(value)) {
       errors.password = isAuth ? "Неверный пароль" : 'Слишком легкий пароль';
     }

@@ -1,4 +1,3 @@
-import { connect } from "react-redux";
 import { withFormik } from "formik";
 import LoginForm from "../components/LoginForm";
 import validateForm from "../../../utils/validate";
@@ -6,8 +5,6 @@ import validateForm from "../../../utils/validate";
 import { userActions } from "../../../redux/actions/indexActions";
 
 import store from "./../../../redux/store";
-
-const LoginFormConnected = connect((state) => state, userActions)(LoginForm);
 
 const LoginFormContainer = withFormik({
   enableReinitialize: true,
@@ -26,16 +23,19 @@ const LoginFormContainer = withFormik({
     store
       .dispatch(userActions.fetchUserLogin(values))
       .then(({ status }) => {
-        if (status === 'success') {
-          props.history.push('/');
-        }
+        setTimeout(() => {
+          if (status === "success") {
+            props.history.push("/");
+          }
+        }, 50);
+
         setSubmitting(false);
       })
       .catch(() => {
         setSubmitting(false);
       });
   },
-  displayName: 'LoginForm',
+  displayName: "LoginForm",
 })(LoginForm);
 
 export default LoginFormContainer;

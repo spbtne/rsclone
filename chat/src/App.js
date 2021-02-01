@@ -1,17 +1,23 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import { Auth, Home } from "./pages/indexPages.js";
 
-function App() {
+const App = (props) => {
+  const { isAuth } = props;
+
   return (
     <div className="wrapper">
       <Router>
-        <Route exact path={["/", "/login", "/registration"]} component={Auth} />
-        <Route exact path={["/im"]} component={Home} />
+        <Route exact path={["/login", "/registration"]} component={Auth} />
+        <Route
+          path="/"
+          render={() => (isAuth ? <Home /> : <Redirect to="/login" />)}
+        />
       </Router>
     </div>
   );
-}
+};
 
-export default App;
+export default connect(({ user }) => ({ isAuth: user.isAuth }))(App);
