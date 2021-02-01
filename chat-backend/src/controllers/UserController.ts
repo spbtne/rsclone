@@ -40,6 +40,12 @@ class UserController {
       fullname: req.body.fullname,
       password: req.body.password,
     };
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
     const user = new UserModel(postData);
     user
       .save()
@@ -47,7 +53,10 @@ class UserController {
         res.json(obj);
       })
       .catch((reason) => {
-        res.json(reason);
+         return res.status(500).json({
+           status:'error',
+          message: reason,
+        });
       });
   }
   delete = (req: express.Request, res: express.Response) => {
@@ -92,7 +101,9 @@ class UserController {
         });
       }
     });
+    
   }
+  
 }
 
 export default UserController;

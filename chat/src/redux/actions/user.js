@@ -33,6 +33,12 @@ const Actions = {
       return data;
     });
   },
+  fetchUserRegistration: (postData) => (dispatch) => {
+    return userApi.registration(postData).then(({ data }) => {
+      console.log(data)
+      return data;
+    });
+  },
 };
 
 export default Actions;

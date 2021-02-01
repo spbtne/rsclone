@@ -11,9 +11,8 @@ import {
   InfoCircleTwoTone,
 } from "@ant-design/icons";
 
-import { Button, Block } from "../../../components/indexComponents";
-import { validateField } from '../../../utils/helpers'
-
+import { Button, Block, FormField } from "../../../components/indexComponents";
+import { validateField } from "../../../utils/helpers/index";
 
 const success = true;
 
@@ -25,6 +24,7 @@ const RegistrationForm = (props) => {
     handleChange,
     handleBlur,
     handleSubmit,
+    isSubmitting,
   } = props;
   return (
     <div>
@@ -35,56 +35,39 @@ const RegistrationForm = (props) => {
       <Block>
         {success ? (
           <Form onSubmit={handleSubmit}>
-            <Form.Item
-              validateStatus={validateField("email", touched, errors)}
-              help={!touched.email ? "" : errors.email}
+            <FormField
+              name="email"
+              icon={<MailOutlined />}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              placeholder={"E-mail"}
+              touched={touched}
+              errors={errors}
+              values={values}
+              type="text"
+            />
+            <FormField
+              name="fullname"
+              icon={<UserOutlined />}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              placeholder={"Имя и Фамилия"}
+              touched={touched}
+              errors={errors}
+              values={values}
+              type="text"
+            />
 
-              rules={[
-                {
-                  required: true,
-                  message: "Введите Ваш e-mail",
-                },
-              ]}
-              hasFeedback
-            >
-              <Input
-                id="email"
-                name="email"
-                size="large"
-                placeholder="E-mail"
-                prefix={<MailOutlined />}
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {/* {errors.email && touched.email && (
-                <span className="error error-email" id="feedback">
-                  {errors.email}
-                </span>
-              )} */}
-
-            </Form.Item>
-            <Form.Item
-              name="userlogin"
-              rules={[
-                {
-                  required: true,
-                  message: "Введите Ваше имя",
-                },
-              ]}
-            >
-              <Input
-                size="large"
-                placeholder="Ваше имя"
-                prefix={<UserOutlined />}
-              />
-            </Form.Item>
+            {/* 
+!
+!
+!
+ ПОЛЯ С ПАРОЛЯМИ ОСТАВИЛ ПО-СТАРОМУ, НЕ ПРОКИДЫВАЛОСЬ ЗНАЧЕНИЕ iconRender,
+если будут ошибки в дальнейшем - поправить поля по примеру выше через компонент FormField */}
 
             <Form.Item
-
               validateStatus={validateField("password", touched, errors)}
               help={!touched.password ? "" : errors.password}
-
               rules={[
                 {
                   required: true,
@@ -106,16 +89,11 @@ const RegistrationForm = (props) => {
                   visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
                 }
               />
-
-              {/* {errors.password && touched.password && (
-                <span className="error error-password" id="feedback">
-                  {errors.password}
-                </span>
-              )} */}
             </Form.Item>
-            <Form.Item validateStatus={validateField("password", touched, errors)}
-
-              name="password-repeat"
+            <Form.Item
+              validateStatus={validateField("password_2", touched, errors)}
+              help={!touched.password_2 ? "" : errors.password_2}
+              name="password"
               rules={[
                 {
                   required: true,
@@ -124,10 +102,13 @@ const RegistrationForm = (props) => {
               ]}
             >
               <Input.Password
+                id="password_2"
                 size="large"
-
-                type="password2"
-
+                name="password_2"
+                type="password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 placeholder="Повторите пароль"
                 prefix={<LockOutlined />}
                 iconRender={(visible) =>
@@ -136,11 +117,16 @@ const RegistrationForm = (props) => {
               />
             </Form.Item>
             <Form.Item>
-              <Button type="primary" size="large" onClick={handleSubmit}>
+              <Button
+                disabled={isSubmitting}
+                onClick={handleSubmit}
+                type="primary"
+                size="large"
+              >
                 Зарегистироваться
               </Button>
             </Form.Item>
-            <Link to="/" className="auth__login-link">
+            <Link to="/login" className="auth__login-link">
               Войти в аккаунт
             </Link>
           </Form>
