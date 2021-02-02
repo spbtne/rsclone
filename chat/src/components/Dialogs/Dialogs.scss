@@ -5,23 +5,24 @@
     padding: 2px 20px 20px 20px;
 
     .ant-input {
-        background-color: #f7f8f9;
-        border: 0;
-        height: 38px;
-        padding: 4px 11px 6px;
+      background-color: #f7f8f9;
+      border: 0;
+      height: 38px;
+      padding: 4px 11px 6px;
     }
-}
+  }
   &__item {
     $item: &;
     display: flex;
     margin-bottom: 20px;
+    color: $dark-text;
 
     &--selected {
-     background-color: #f7f8f9;
+      background-color: #f7f8f9;
     }
 
-        &-avatar {
-          position: relative;
+    &-avatar {
+      position: relative;
       flex: 0 0 40px;
       width: 40px;
       height: 40px;
@@ -39,7 +40,7 @@
           position: absolute;
           bottom: 0;
           right: 0;
-          content: '';
+          content: "";
           background-color: $green;
           border-radius: 30px;
           width: 13px;

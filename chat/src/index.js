@@ -7,7 +7,11 @@ import store from './redux/store';
 import "./styles/index.scss";
 import 'emoji-mart/css/emoji-mart.css';
 
+
+
 import App from "./App";
+import { userActions } from "./redux/actions/indexActions";
+store.dispatch(userActions.fetchUserData());
 
 ReactDOM.render(
   <Provider store={store}>

@@ -62,16 +62,21 @@ class UserController {
   };
   delete = (req: express.Request, res: express.Response) => {
     const id = req.params.id;
-    UserModel.findOneAndDelete({ _id: id })
-      .then((user: any) => {
-        res.json({ message: `User ${user.fullname} deleted` });
+    UserModel.findOneAndRemove({ _id: id })
+      .then((user: { fullname: any; }) => {
+        if (user) {
+          res.json({
+            message: `User ${user.fullname} deleted`
+          });
+        }
       })
-      .catch((err: any) => {
+      .catch(() => {
         res.json({
-          message: `User not found`,
+          message: `User not found`
         });
       });
   };
+  
   login = (req: express.Request, res: express.Response) => {
     const postData = {
       email: req.body.email,

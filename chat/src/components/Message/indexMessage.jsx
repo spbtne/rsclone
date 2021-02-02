@@ -1,25 +1,23 @@
-import React, { useState, useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
-// import formatDistanceToNow from "date-fns/formatDistanceToNow";
-// import ruLocale from "date-fns/locale/ru";
-import classNames from 'classnames';
-import { Emoji } from 'emoji-mart';
+import React, { useState, useRef, useEffect } from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { Emoji } from "emoji-mart";
 
-import { convertCurrentTime } from '../../utils/helpers';
+import { convertCurrentTime } from "../../utils/helpers";
 
-import readedSvg from '../../assets/img/readed.svg';
-import noReadedSvg from '../../assets/img/no-read.svg';
-import readedSvgWhite from '../../assets/img/readedWhite.svg';
-import noReadedSvgWhite from '../../assets/img/no-readWhite.svg';
-import waveSvg from '../../assets/img/wave.svg';
-import playSvg from '../../assets/img/play.svg';
-import pauseSvg from '../../assets/img/pause.svg';
+import readedSvg from "../../assets/img/readed.svg";
+import noReadedSvg from "../../assets/img/no-read.svg";
+import readedSvgWhite from "../../assets/img/readedWhite.svg";
+import noReadedSvgWhite from "../../assets/img/no-readWhite.svg";
+import waveSvg from "../../assets/img/wave.svg";
+import playSvg from "../../assets/img/play.svg";
+import pauseSvg from "../../assets/img/pause.svg";
 
-import Time from '../Time/indexTime';
-import Avatar from '../Avatar/indexAvatar';
+import Time from "../Time/indexTime";
+import Avatar from "../Avatar/indexAvatar";
 
-import './Message.scss';
-import IconReaded from '../IconReaded/indexIconReaded';
+import "./Message.scss";
+import IconReaded from "../IconReaded/indexIconReaded";
 
 const MessageAudio = ({ audioSrc }) => {
   const audioElem = useRef(null);
@@ -37,31 +35,31 @@ const MessageAudio = ({ audioSrc }) => {
   };
 
   useEffect(() => {
-    audioElem.current.volume = '0.1';
+    audioElem.current.volume = "0.1";
     audioElem.current.addEventListener(
-      'playing',
+      "playing",
       () => {
         setIsPlaing(true);
       },
-      false,
+      false
     );
     audioElem.current.addEventListener(
-      'ended',
+      "ended",
       () => {
         setIsPlaing(false);
         setProgress(0);
         setCurrentTime(0);
       },
-      false,
+      false
     );
     audioElem.current.addEventListener(
-      'pause',
+      "pause",
       () => {
         setIsPlaing(false);
       },
-      false,
+      false
     );
-    audioElem.current.addEventListener('timeupdate', () => {
+    audioElem.current.addEventListener("timeupdate", () => {
       const duration = (audioElem.current && audioElem.current.duration) || 0;
       setCurrentTime(audioElem.current.currentTime);
 
@@ -72,7 +70,10 @@ const MessageAudio = ({ audioSrc }) => {
   return (
     <div className="message__audio">
       <audio volume="0.1" ref={audioElem} src={audioSrc} preload="auto" />
-      <div className="message__audio-progress" style={{ width: progress + '%' }}></div>
+      <div
+        className="message__audio-progress"
+        style={{ width: progress + "%" }}
+      ></div>
       <div className="message__audio-info">
         <div className="message__audio-btn">
           <button onClick={togglePlay}>
@@ -86,36 +87,41 @@ const MessageAudio = ({ audioSrc }) => {
         <div className="message__audio-wave">
           <img src={waveSvg} alt="Wave svg" />
         </div>
-        <span className="message__audio-duration">{convertCurrentTime(currentTime)}</span>
+        <span className="message__audio-duration">
+          {convertCurrentTime(currentTime)}
+        </span>
       </div>
     </div>
   );
 };
-function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments, isTyping }) {
+function Message({
+  avatar,
+  user,
+  text,
+  date,
+  audio,
+  isMe,
+  isReaded,
+  attachments,
+  isTyping,
+}) {
   return (
     <div
-      className={classNames('message', {
-        'message--isme': isMe,
-        'message--is-typing': isTyping,
-        'message--is-audio': audio,
-        'message--image': attachments && attachments.length === 1,
-      })}>
+      className={classNames("message", {
+        "message--isme": isMe,
+        "message--is-typing": isTyping,
+        "message--is-audio": audio,
+        "message--image": attachments && attachments.length === 1,
+      })}
+    >
       <div className="message__avatar">
-      <Avatar user={user} />
+        <Avatar user={user} />
       </div>
       <div className="message__container">
         <IconReaded isMe={isMe} isReaded={isReaded} />
         {(audio || text || isTyping) && (
           <div className="message__bubble">
-            {text && (
-              <p className="message__text">
-                <Emoji
-                  emoji=":santa::skin-tone-3:"
-                  set="apple"
-                  size={16} 
-                />
-              </p>
-              )}
+            {text && <p className="message__text">{text}</p>}
             {isTyping && (
               <div className="message__typing">
                 <span />
@@ -154,7 +160,6 @@ function Message({ avatar, user, text, date, audio, isMe, isReaded, attachments,
             <Time date={date} />
           </span>
         )}
-
       </div>
     </div>
   );
@@ -174,7 +179,6 @@ Message.propTypes = {
   isReaded: PropTypes.bool,
   isTyping: PropTypes.bool,
   audio: PropTypes.string,
-
 };
 
 export default Message;

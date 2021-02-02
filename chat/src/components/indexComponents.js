@@ -1,6 +1,6 @@
 export { default as Button } from "./Button/indexButton";
 export { default as Block } from "./Block/indexBlock";
-export { default as Message } from "./Message/indexMessage";
+export { default as Message } from "./Message/indexMessage.jsx";
 export { default as Messages } from "./Messages/indexMessages";
 export { default as DialogItem } from "./DialogItem/indexDialogItem";
 export { default as Time } from "./Time/indexTime";

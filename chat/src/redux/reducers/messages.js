@@ -1,22 +1,27 @@
 const initialState = {
-    items: null,
-    isLoading: false,
-}
-
-export default (state = initialState, { type, payload }) => {
+    items: [],
+    isLoading: false
+  };
+  
+  export default (state = initialState, { type, payload }) => {
     switch (type) {
-        case 'MESSAGES:SET_ITEMS':
+      case "MESSAGES:ADD_MESSAGE":
         return {
-            ...state,
-            items: payload,
-            isLoading: false
+          ...state,
+          items: [...state.items, payload]
         };
-        case 'MESSAGES:SET_IS_LOADING':
+      case "MESSAGES:SET_ITEMS":
         return {
-            ...state,
-            isLoading: payload
+          ...state,
+          items: payload,
+          isLoading: false
         };
-        default:
-            return state;
+      case "MESSAGES:SET_IS_LOADING":
+        return {
+          ...state,
+          isLoading: payload
+        };
+      default:
+        return state;
     }
-}
+  };

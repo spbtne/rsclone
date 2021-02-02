@@ -4,8 +4,9 @@ $self: '.message';
 
 
 .message {
+  margin: 0 auto;
   display: flex;
-  max-width: 440px;
+  max-width: 95%;
   margin-bottom: 20px;
 
 
@@ -110,6 +111,12 @@ $self: '.message';
     display: flex;
     flex-direction: row-reverse;
     align-self: flex-end;
+
+    .avatar {
+      margin-left: 13px;
+      margin-right: 0;
+    }
+
     #{$self}__content {
       margin-bottom: 15px;
     }

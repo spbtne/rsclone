@@ -16,28 +16,24 @@ const Dialogs = ({
   const [inputValue, setValue] = useState("");
   const [filtred, setFiltredItems] = useState(Array.from(items));
 
-  const onChangeInput = (value = "") => {
+  const onChangeInput = (value = '') => {
     setFiltredItems(
       items.filter(
-        (dialog) => dialog.partner.fullname.toLowerCase().indexOf(value) >= 0
-      )
+        dialog =>
+        dialog.author.fullname.toLowerCase().indexOf(value.toLowerCase()) >=
+        0 ||
+      dialog.partner.fullname.toLowerCase().indexOf(value.toLowerCase()) >=
+        0
+      ),
     );
     setValue(value);
   };
 
-  useEffect(() => {
-    if (!items.length) {
-      fetchDialogs();
-    } else {
-      setFiltredItems(items);
-    }
-  }, [items]);
   const onNewDialog = () => {
     fetchDialogs();
   };
 
   window.fetchDialogs = fetchDialogs;
-
   useEffect(() => {
     if (items.length) {
       onChangeInput();
@@ -55,7 +51,7 @@ const Dialogs = ({
     socket.on("SERVER:DIALOG_CREATED", onNewDialog);
     return () => socket.removeListener("SERVER:DIALOG_CREATED", onNewDialog);
   }, []);
-
+  
   return (
     <BaseDialogs
       userId={userId}

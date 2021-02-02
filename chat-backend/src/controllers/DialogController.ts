@@ -2,10 +2,9 @@ import { json } from "body-parser";
 import express from "express";
 import mongoose from "mongoose";
 import { DialogModel, MessageModel } from "../models/indexModels";
-import socket from 'socket.io';
+import socket from "socket.io";
 
 class DialogController {
-
   io: socket.Server;
 
   constructor(io: socket.Server) {
@@ -13,16 +12,15 @@ class DialogController {
   }
 
   index = (req: any, res: express.Response) => {
-
-    const authorId = req.user.data._doc._id;
+    const userId  = req.user.data._doc._id;
 
     DialogModel.find()
-      .or([{ author: authorId }])
+      .or([{ author: userId }, { partner: userId }])
       .populate(["author", "partner"])
       .populate({
-        path: 'lastMessage',
+        path: "lastMessage",
         populate: {
-          path: 'user',
+          path: "user",
         },
       })
       .exec(function (err: any, dialogs: any) {
@@ -33,10 +31,10 @@ class DialogController {
         }
         return res.json(dialogs);
       });
-  }
-  create = (req: express.Request, res: express.Response) => {
+  };
+  create = (req: any, res: express.Response) => {
     const postData = {
-      author: req.body.author,
+      author: req.user.data._doc._id,
       partner: req.body.partner,
     };
     const dialog = new DialogModel(postData);
@@ -52,16 +50,26 @@ class DialogController {
         message
           .save()
           .then(() => {
-            res.json(dialogObj);
+            dialogObj.lastMessage = message._id;
+            dialogObj.save().then(() => {
+              res.json(dialogObj);
+              this.io.emit("SERVER:DIALOG_CREATED", {
+                ...postData,
+                dialog: dialogObj,
+              });
+            });
           })
-          .catch((reason: any) => {
+          .catch((reason) => {
             res.json(reason);
           });
       })
-      .catch((reason: any) => {
-        res.json(reason);
+      .catch((err) => {
+        res.json({
+          status: "error",
+          message: err,
+        });
       });
-  }
+  };
   delete = (req: express.Request, res: express.Response) => {
     const id = req.params.id;
     DialogModel.findOneAndDelete({ _id: id })
@@ -75,7 +83,7 @@ class DialogController {
           message: `Dialog not found`,
         });
       });
-  }
+  };
 }
 
 export default DialogController;

@@ -1,7 +1,7 @@
 
 import bcrypt from 'bcryptjs';
 
-export default (password: any): Promise<string> => {
+export default (password: any | number = ""): Promise<string> => {
   return new Promise((resolve, reject) => {
     bcrypt.hash(password, 10, function (err, hash: string) {
       if (err) return reject(err);
