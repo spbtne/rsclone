@@ -16,6 +16,10 @@ export interface IDialog extends Document {
       ref: string;
     }
   ];
+  lastMessage: {
+    type: Schema.Types.ObjectId;
+    ref: string;
+  };
 }
 
 const DialogSchema = new Schema(
@@ -31,6 +35,10 @@ const DialogSchema = new Schema(
     messages: {
       type: Schema.Types.ObjectId,
       ref: "Message",
+    },
+    lastMessage: { 
+      type: Schema.Types.ObjectId, 
+      ref: "Message" 
     },
   },
   {

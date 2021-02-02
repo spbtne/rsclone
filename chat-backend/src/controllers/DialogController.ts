@@ -12,13 +12,19 @@ class DialogController {
     this.io = io;
   }
 
-  index = (req: express.Request, res: express.Response) => {
+  index = (req: any, res: express.Response) => {
 
-    const authorId = req.body.author;
+    const authorId = req.user.data._doc._id;
 
     DialogModel.find()
       .or([{ author: authorId }])
       .populate(["author", "partner"])
+      .populate({
+        path: 'lastMessage',
+        populate: {
+          path: 'user',
+        },
+      })
       .exec(function (err: any, dialogs: any) {
         if (err) {
           return res.status(404).json({

@@ -50,7 +50,7 @@ class UserController {
       .then((obj: any) => {
         res.json({
           status: "success",
-          obj
+          obj,
         });
       })
       .catch((reason) => {
@@ -96,7 +96,7 @@ class UserController {
           token,
         });
       } else {
-        res.json({
+        res.status(403).json({
           status: "error",
           message: "Incorrect password or email",
         });

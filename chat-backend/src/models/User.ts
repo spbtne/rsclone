@@ -1,5 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 import { generatePasswordHash } from "../utils/indexUtils";
+import differenceInMinutes from "date-fns/differenceInMinutes";
 
 export interface IUser extends Document {
   email: string;
@@ -42,6 +43,18 @@ const UserSchema: Schema = new Schema(
     timestamps: true,
   }
 );
+
+UserSchema.virtual("isOnline").get(function (this: any) {
+  const dateString = new Date();
+  console.log(dateString);
+  console.log(this.last_seen);
+
+  return console.log(differenceInMinutes(new Date() , this.last_seen)), differenceInMinutes(new Date() , this.last_seen) > 5;
+});
+
+UserSchema.set("toJSON", {
+  virtuals: true,
+});
 
 
 UserSchema.pre<IUser>("save", async function (next) {

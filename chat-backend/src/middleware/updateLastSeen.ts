@@ -1,16 +1,16 @@
-import express from "express";
+import express from 'express';
 import { UserModel } from "../models/indexModels";
 
-export default (
-  req: express.Request,
-  res: express.Response,
-  next: express.NextFunction
-) => {
-  UserModel.findOneAndUpdate(
-    { _id: "60041df34beb802a503876bf" },
-    { last_seen: new Date() },
-    { new: true },
-    () => {}
-  );
+export default (req: any, _: express.Response, next: express.NextFunction) => {
+
+  if (req.user) {
+    UserModel.findOneAndUpdate(
+      { _id: req.user.data._doc._id },
+      {
+        last_seen: new Date(),
+      },
+      { new: true },
+    );
+  }
   next();
 };
