@@ -51,7 +51,7 @@ const Dialogs = ({
     socket.on("SERVER:NEW_MESSAGE ", onNewDialog);
     return () => socket.removeListener("SERVER:NEW_MESSAGE ", onNewDialog);
   }, []);
-  // console.log(filtred, userId)
+
   return (
     <BaseDialogs
       userId={userId}
