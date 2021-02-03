@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Button } from 'antd';
 import { TeamOutlined, FormOutlined, EllipsisOutlined, SmileOutlined } from "@ant-design/icons";
 import { Status } from '../../components/indexComponents';
-import { Dialogs, Messages, ChatInput } from "../../containers/indexContainers"
+import { Dialogs, Messages, ChatInput, StatusHead } from "../../containers/indexContainers"
 
 import './Home.scss';
 
@@ -35,10 +35,7 @@ const Home = () => {
 
             </div>
                 <div className="chat__dialog-header-center">
-                  <b className="chat__dialog-header-username">Гай Юлий Цезарь</b>
-                  <div className="chat__dialog-header-status">
-                    <Status online />
-                  </div>
+                  <b className="chat__dialog-header-username"><StatusHead/></b>
                 </div>
                 <Button type="link" shape="circle" icon={<EllipsisOutlined />}/>
             </div>
