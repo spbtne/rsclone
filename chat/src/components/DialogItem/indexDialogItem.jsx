@@ -37,7 +37,7 @@ const DialogItem = ({
   isMe,
   currentDialogId,
   onSelect,
-  lastMessage,
+  lastMessage
 }) => (
 <Link to={`/dialog/${_id}`}>
     <div

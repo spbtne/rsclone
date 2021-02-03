@@ -118,7 +118,6 @@ function Message({
         <Avatar user={user} />
       </div>
       <div className="message__container">
-        <IconReaded isMe={isMe} isReaded={isReaded} />
         {(audio || text || isTyping) && (
           <div className="message__bubble">
             {text && <p className="message__text">{text}</p>}
@@ -131,19 +130,26 @@ function Message({
             )}
             {audio && <MessageAudio audioSrc={audio} />}
             <div className="chat-bubble"></div>
-            <img
-              src={
-                isMe
-                  ? isReaded
-                    ? readedSvg
-                    : noReadedSvg
-                  : isReaded
-                  ? readedSvgWhite
-                  : noReadedSvgWhite
-              }
-              alt="Check icon"
-              className="message__check-icon"
-            />
+            <div className="icons_read_status-wrapper">
+              <IconReaded
+                isMe={isMe}
+                isReaded={isReaded}
+                className="message__check-icon--readed"
+              />
+              <img
+                src={
+                  isMe
+                    ? isReaded
+                      ? readedSvg
+                      : noReadedSvg
+                    : isReaded
+                    ? readedSvgWhite
+                    : noReadedSvgWhite
+                }
+                alt="Check icon"
+                className="message__check-icon"
+              />
+            </div>
           </div>
         )}
         {attachments && (

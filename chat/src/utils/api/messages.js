@@ -1,3 +1,5 @@
+/* eslint-disable import/no-anonymous-default-export */
+/* eslint-disable no-undef */
 import { axios } from '../../core/indexCore';
 
 export default {
@@ -5,6 +7,6 @@ export default {
     send: (text, dialogId) =>
       axios.post("/messages", {
         text: text,
-        dialog_id: dialogId
+        dialog: dialogId
       })
   };

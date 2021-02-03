@@ -17,7 +17,7 @@ class MessageController {
 
     MessageModel.find()
       .or([{ dialog: dialogId }])
-      .populate(["dialog", "user"])
+      .populate(["dialog", 'user'])
       .exec(function (err: any, messages: any) {
         if (err) {
           return res.status(404).json({

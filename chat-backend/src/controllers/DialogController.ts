@@ -15,14 +15,14 @@ class DialogController {
     const userId  = req.user.data._doc._id;
 
     DialogModel.find()
-      .or([{ author: userId }, { partner: userId }])
-      .populate(["author", "partner"])
-      .populate({
-        path: "lastMessage",
-        populate: {
-          path: "user",
-        },
-      })
+    .or([{ author: userId }, { partner: userId }])
+    .populate(["author", "partner"])
+    .populate({
+      path: "lastMessage",
+      populate: {
+        path: "user"
+      }
+    })
       .exec(function (err: any, dialogs: any) {
         if (err) {
           return res.status(404).json({
@@ -45,7 +45,7 @@ class DialogController {
         const message = new MessageModel({
           text: req.body.text,
           dialog: dialogObj._id,
-          user: req.body.author,
+          user: req.user.data._doc._id,
         });
         message
           .save()

@@ -57,7 +57,6 @@ const CheckEmailInfo = ({ location, history }) => {
     }
   }, []);
 
-  // console.log({ info, checking, verified, hash });
 
   let verify_link = `http://localhost:3000/registration/verify?hash=${window.localStorage["email_hash"]}`;
   return (

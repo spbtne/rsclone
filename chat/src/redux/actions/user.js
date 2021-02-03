@@ -13,7 +13,7 @@ const Actions = {
   },
   fetchUserLogin: (postData) => (dispatch) => {
     return userApi
-    .signIn(postData)
+    .login(postData)
     .then(({ data }) => {
       const { token } = data;
         openNotification({
@@ -30,7 +30,6 @@ const Actions = {
   fetchUserRegistration: (postData) => (dispatch) => {
     return userApi.registration(postData).then(({ data }) => {
       window.localStorage["email_hash"] = data.obj.confirm_hash;
-      // console.log(data)
       return data;
     });
   },

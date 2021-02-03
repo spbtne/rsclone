@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 import { Button } from 'antd';
 import { TeamOutlined, FormOutlined, EllipsisOutlined, SmileOutlined } from "@ant-design/icons";
-import { Status, ChatInput } from '../../components/indexComponents';
-import { Dialogs, Messages } from "../../containers/indexContainers"
+import { Status } from '../../components/indexComponents';
+import { Dialogs, Messages, ChatInput } from "../../containers/indexContainers"
 
 import './Home.scss';
 

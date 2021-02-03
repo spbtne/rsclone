@@ -1,7 +1,6 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
-$self: '.message';
-
+$self: ".message";
 
 .message {
   margin: 0 auto;
@@ -9,11 +8,10 @@ $self: '.message';
   max-width: 95%;
   margin-bottom: 20px;
 
-
   &__avatar {
     display: flex;
     flex-direction: column-reverse;
-    
+
     .avatar {
       width: 33px;
       height: 33px;
@@ -41,11 +39,6 @@ $self: '.message';
   &__date {
     font-size: 12px;
     opacity: 0.4;
-  }
-  &__check-icon {
-    position: absolute;
-    right: 16px;
-    bottom: 10px;
   }
   &__attachments {
     display: flex;
@@ -192,5 +185,9 @@ $self: '.message';
   to {
     opacity: 1;
   }
+}
 
+.icons_read_status-wrapper {
+  width: 25px;
+  transform: translateY(7px);
 }
