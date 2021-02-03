@@ -27,6 +27,17 @@ const App = (props) => {
           />
         </Switch>
       </Router>
+      <div id='footer'>
+<img src="https://rs.school/images/rs_school_js.svg" alt="logo" width="150px"/>
+<a href="https://rs.school/js/">RSS School</a>
+<span>Chat 2021</span> 
+<div className="developers">
+    <h3>developed by</h3>
+<a href="https://github.com/DreamerAleksey">Dreamer Aleksey</a>
+<a href="https://github.com/Voloshin-Sergei">Voloshin Sergei</a>
+<a href="https://github.com/spbtne">Nikita Tushin</a>
+</div>
+    </div>
     </div>
   );
 };
