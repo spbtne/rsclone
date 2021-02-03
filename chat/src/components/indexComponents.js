@@ -10,3 +10,4 @@ export { default as Avatar } from "./Avatar/indexAvatar";
 export { default as Status } from "./Status/indexStatus";
 export { default as ChatInput } from "./ChatInput/indexChatInput";
 export { default as FormField } from "./FormField/index";
+export { default as Sidebar } from "./Sidebar/indexSidebar.jsx";

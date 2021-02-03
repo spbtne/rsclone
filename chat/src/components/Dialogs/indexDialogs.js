@@ -15,6 +15,7 @@ const Dialogs = ({ items, userId, onSearch, inputValue, currentDialogId, onSelec
         value={inputValue}
       />
     </div>
+    
     {items.length ? (
       orderBy(items, ["desc"]).map(item => (
         <DialogItem

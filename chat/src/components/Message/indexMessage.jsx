@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Emoji } from "emoji-mart";
+import { Popover, Button } from "antd";
+import { EllipsisOutlined } from "@ant-design/icons";
 
 import { convertCurrentTime } from "../../utils/helpers";
 
@@ -104,6 +106,7 @@ function Message({
   isReaded,
   attachments,
   isTyping,
+  onRemoveMessage
 }) {
   return (
     <div
@@ -114,6 +117,18 @@ function Message({
         "message--image": attachments && attachments.length === 1,
       })}
     >
+      <Popover
+          content={
+            <div>
+              <Button onClick={onRemoveMessage}>Удалить</Button>
+            </div>
+          }
+          trigger="click"
+        >
+          <div className="message__icon-actions">
+            <Button type="link" shape="circle" icon={<EllipsisOutlined />} />
+          </div>
+        </Popover>
       <div className="message__avatar">
         <Avatar user={user} />
       </div>

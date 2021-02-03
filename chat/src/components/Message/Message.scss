@@ -7,6 +7,20 @@ $self: ".message";
   display: flex;
   max-width: 95%;
   margin-bottom: 20px;
+  position: relative;
+
+  &__icon-actions {
+    transform: rotate(90deg) scale(1.25);
+    position: absolute;
+    left: 20px;
+    right: auto;
+    top: 0px;
+    display: none;
+  }
+
+  &:hover .message__icon-actions {
+    display: block;
+  }
 
   &__avatar {
     display: flex;
@@ -108,6 +122,12 @@ $self: ".message";
     .avatar {
       margin-left: 13px;
       margin-right: 0;
+    }
+    .message__icon-actions {
+      right: 20px;
+      left: auto;
+
+      display: none;
     }
 
     #{$self}__content {

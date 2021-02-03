@@ -5,4 +5,5 @@ export default {
   registration: (postData) => axios.post("/user/registration", postData),
   verifyHash: hash => axios.get("/user/verify?hash=" + hash),
   getMe: () => axios.get("/user/me/profile"),
+  searchUser: (name) => axios.get("/user/search"),
 };
