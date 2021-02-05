@@ -13,10 +13,14 @@ import {
   MessageCtrl,
 } from "../controllers/indexControllers";
 
+// const cors = require('cors')
+
 const createRoutes = (app: express.Express, io: socket.Server) => {
   const UserController = new UserCtrl(io);
   const DialogController = new DialogCtrl(io);
   const MessageController = new MessageCtrl(io);
+
+  // app.use(cors());
 
   app.use(bodyParser.json());
   app.use(checkAuth);
