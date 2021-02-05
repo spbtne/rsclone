@@ -10,7 +10,7 @@
 3)	ВАЖНО! Открываем отдельно в разных окнах VScode(или другой) в одном папку chat, в другом папку chat-backend
 4)	Npm install в обоих папках
 5)	Чтобы не терять время во время установки, заходим на сайт MongoDB и скачиваем MongoDB Community Server (https://www.mongodb.com/try/download/community)
-6)	После установки, запустить в корне программы (C:\Program Files\MongoDB\Server\4.4\bin) запустить mongod.exe и mongo.exe
+6)	После установки, в корне программы (C:\Program Files\MongoDB\Server\4.4\bin) запустить mongod.exe и mongo.exe
 7)	После установки зависимостей npm start в “chat” и “chat-backend”
 
 После запуска приложения вы сможете увидеть главную страницу с авторизацией.
