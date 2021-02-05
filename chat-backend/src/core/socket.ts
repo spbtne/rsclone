@@ -1,8 +1,9 @@
 import http from 'http';
 const socket = require('socket.io');
+const cors = require('cors')
 
 
-export default (http: http.Server) => {
+const createSocket = (http: http.Server) => {
   const io = socket(http, {cors:{origin:"*"}});
 
   // io.on('connection', function(socket: any) {
@@ -17,3 +18,5 @@ export default (http: http.Server) => {
 
   return io;
 };
+
+export default createSocket;
