@@ -1,0 +1,12 @@
+.add-dialog-form {
+  .ant-form-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    margin-bottom: 10px;
+    &-label {
+      line-height: inherit !important;
+      text-align: left;
+    }
+  }
+}
